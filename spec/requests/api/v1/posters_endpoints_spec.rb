@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "Posters API Endpoints" do
   before(:each) do 
-   poster_1 = Poster.create(
+    Poster.create(
       name: "Head",
       description: "The top of a body",
       price: 100.00,
@@ -11,7 +11,7 @@ describe "Posters API Endpoints" do
       img_url: "https://yanksmannequins.com/1181-small_default/mannequin-head-h37.jpg"
     )
       
-    poster_2 = Poster.create(
+    Poster.create(
       name: "Torso",
       description: "The middle of a body",
       price: 75.00,
@@ -20,7 +20,7 @@ describe "Posters API Endpoints" do
       img_url: "https://yanksmannequins.com/955-small_default/small-mannequin-military-torso-ww2-ww1-half-body-tailor-form.jpg"
     )
         
-    poster_3 = Poster.create(
+    Poster.create(
       name: "Legs",
       description: "The bottom part of a body",
       price: 50.00,
@@ -63,32 +63,36 @@ describe "Posters API Endpoints" do
     end
   end
   
+  let(:poster) {Poster.first}
+ 
   it "can return one poster" do 
-   
-    get "api/v1/posters/#{poster_1.id}"
+
+    get "/api/v1/posters/#{poster.id}"
+
+    posters = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
 
-    expect(poster_response).to have_key(:id)
-    expect(poster_response[:id]).to eq(song_1.id)
+    expect(posters).to have_key(:id)
+    expect(posters[:id]).to eq(poster.id)
 
-    expect(poster_response).to have_key(:name)
-    expect(poster_response[:name]).to eq(poster_1.name)
+    expect(posters).to have_key(:name)
+    expect(posters[:name]).to eq(poster.name)
 
-    expect(poster_response).to have_key(:description)
-    expect(poster_response[:description]).to eq(poster_1.description)
+    expect(posters).to have_key(:description)
+    expect(posters[:description]).to eq(poster.description)
 
-    expect(poster_response).to have_key(:price)
-    expect(poster_response[:price]).to eq(poster_1.price)
+    expect(posters).to have_key(:price)
+    expect(posters[:price]).to eq(poster.price)
 
-    expect(poster_response).to have_key(:year)
-    expect(poster_response[:year]).to eq(poster_1.year)
+    expect(posters).to have_key(:year)
+    expect(posters[:year]).to eq(poster.year)
 
-    expect(poster_response).to have_key(:vintage)
-    expect(poster_response[:vintage]).to eq(poster_1.vintage)
+    expect(posters).to have_key(:vintage)
+    expect(posters[:vintage]).to eq(poster.vintage)
 
-    expect(poster_response).to have_key(:img_url)
-    expect(poster_response[:img_url]).to eq(poster_1.img_url)
+    expect(posters).to have_key(:img_url)
+    expect(posters[:img_url]).to eq(poster.img_url)
 
   end
   it "can update an existing poster" do

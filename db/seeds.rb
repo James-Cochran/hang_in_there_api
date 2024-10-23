@@ -33,3 +33,31 @@ Poster.create(
               vintage: true,
               img_url: "https://images.unsplash.com/photo-1644329771909-b651e30c41da?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvY3Jhc3RpbmF0aW9ufGVufDB8fDB8fHww"
 )
+
+Poster.create(
+              name: "NEGLECT",
+              description: "Happiness is overrated.",
+              price: 160.00,
+              year: 2019,
+              vintage: true,
+              img_url: "https://images.unsplash.com/photo-1617400372783-71e460f3fcc1?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fG5lZ2xlY3R8ZW58MHx8MHx8fDA%3D"
+)
+
+Poster.create(
+              name: "FEAR",
+              description: "Giving up is always an option.",
+              price: 91.00,
+              year: 2014,
+              vintage: false,
+              img_url: "https://media.istockphoto.com/id/1970353806/photo/man-walking-at-foggy-forest-in-the-morning.webp?a=1&b=1&s=612x612&w=0&k=20&c=BcW6LR2ngXaFkCBML_oRuo0O1JgC6JjWTzwxVE1V4kk="
+)
+
+Poster.create(
+              name: "DOUBT",
+              description: "Success is for other people, not you.",
+              price: 140.00,
+              year: 2020,
+              vintage: false,
+              img_url: "https://images.unsplash.com/photo-1693035477914-29b107f0a3d8?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGRvdWJ0fGVufDB8fDB8fHww"
+)
+

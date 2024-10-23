@@ -26,6 +26,12 @@ class Api::V1::PostersController < ApplicationController
     render json: updated_poster #PosterSerializer.format_posters(updated_poster)
   end
 
+  def destroy
+    poster = Poster.find(params[:id])
+    poster.destroy
+    head  :no_content
+  end
+
   private
 
   def poster_params

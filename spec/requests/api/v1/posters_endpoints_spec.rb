@@ -110,6 +110,7 @@ describe "Posters API Endpoints" do
     expect(posters[:img_url]).to eq(poster.img_url)
 
   end
+  
   it "can update an existing poster" do
     poster = Poster.first
     id = poster.id

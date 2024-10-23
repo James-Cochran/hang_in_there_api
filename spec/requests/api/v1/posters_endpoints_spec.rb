@@ -98,7 +98,12 @@ describe "Posters API Endpoints" do
 
   it "can create new poster" do
     poster_params = {
-
+        name: "NEGLECT",
+        description:  "Happiness is overrated.",
+        price: 160.00,
+        year: 2019,
+        vintage: true,
+        img_url:  "./assets/neglect.jpg"
     }
     headers = {"CONTENT_TYPE" => "applicaiton/json"}
 

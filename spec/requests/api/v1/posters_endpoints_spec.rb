@@ -77,7 +77,39 @@ describe "Posters API Endpoints" do
     #   expect(poster[:attributes][:img_url]).to be_a(String)
     # end
   end
+  
+  let(:poster) {Poster.first}
+ 
+  it "can return one poster" do 
 
+    get "/api/v1/posters/#{poster.id}"
+
+    posters = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to be_successful
+
+    expect(posters).to have_key(:id)
+    expect(posters[:id]).to eq(poster.id)
+
+    expect(posters).to have_key(:name)
+    expect(posters[:name]).to eq(poster.name)
+
+    expect(posters).to have_key(:description)
+    expect(posters[:description]).to eq(poster.description)
+
+    expect(posters).to have_key(:price)
+    expect(posters[:price]).to eq(poster.price)
+
+    expect(posters).to have_key(:year)
+    expect(posters[:year]).to eq(poster.year)
+
+    expect(posters).to have_key(:vintage)
+    expect(posters[:vintage]).to eq(poster.vintage)
+
+    expect(posters).to have_key(:img_url)
+    expect(posters[:img_url]).to eq(poster.img_url)
+
+  end
   it "can update an existing poster" do
     poster = Poster.first
     id = poster.id

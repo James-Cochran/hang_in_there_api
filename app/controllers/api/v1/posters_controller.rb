@@ -1,12 +1,12 @@
 class Api::V1::PostersController < ApplicationController
   def index
     posters = Poster.all
-    render json: PosterSerializer.format_posters(posters)
+    render json: posters #PosterSerializer.format_posters(posters)
   end
 
   def update
     updated_poster = Poster.update(params[:id], poster_params)
-    render json: PosterSerializer.format_posters(updated_poster)
+    render json: updated_poster #PosterSerializer.format_posters(updated_poster)
   end
 
   private

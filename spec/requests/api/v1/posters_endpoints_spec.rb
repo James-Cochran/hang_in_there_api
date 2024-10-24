@@ -36,8 +36,8 @@ describe "Posters API Endpoints" do
     expect(response).to be_successful
 
     posters = JSON.parse(response.body, symbolize_names: true)[:data]
-    # binding.pry
-    # expect(posters.count).to eq(3)
+  
+    expect(posters.count).to eq(3)
    
     posters.each do |poster|
       expect(poster).to have_key(:id)

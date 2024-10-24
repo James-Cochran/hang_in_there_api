@@ -110,7 +110,31 @@ describe "Posters API Endpoints" do
     expect(posters[:img_url]).to eq(poster.img_url)
 
   end
-  
+
+  it "can create new poster" do
+    poster_params = {
+        poster: {
+            name: "NEGLECT",
+            description:  "Happiness is overrated.",
+            price: 160.00,
+            year: 2019,
+            vintage: true,
+            img_url:  "./assets/neglect.jpg"
+        }
+    }
+    
+    post "/api/v1/posters", params: poster_params
+
+    created_poster = Poster.last
+    expect(response).to be_successful
+    expect(created_poster.name).to eq(poster_params[:poster][:name])
+    expect(created_poster.description).to eq(poster_params[:poster][:description])
+    expect(created_poster.price).to eq(poster_params[:poster][:price])
+    expect(created_poster.year).to eq(poster_params[:poster][:year])
+    expect(created_poster.vintage).to eq(poster_params[:poster][:vintage])
+    expect(created_poster.img_url).to eq(poster_params[:poster][:img_url])
+  end
+
   it "can update an existing poster" do
     poster = Poster.first
     id = poster.id

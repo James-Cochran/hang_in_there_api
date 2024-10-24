@@ -14,4 +14,12 @@ class Poster < ApplicationRecord
     end
   end
 
+  def self.filter(params)
+    if params[:name].present?
+      Poster.where('name ILIKE ?', "%#{params[:name]}%").order(name: :asc)
+      # Poster.order(name: :asc)
+    else
+      Poster.all
+    end
+  end
 end

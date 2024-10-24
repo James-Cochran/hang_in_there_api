@@ -55,10 +55,10 @@ describe "Posters" do
   describe 'filtering posters' do
     it 'can filter posters using case-insensitive search query' do
       filtered_posters = Poster.filter(name:("t"))
-
-      expect(filtered_posters[:name]).to eq("Torso")
-      expect(filtered_posters[:name]).to_not eq("Head")
-      expect(filtered_posters[:name]).to_not eq("Legs")
+      # binding.pry
+      expect(filtered_posters.map(&:name)).to include("Torso")
+      expect(filtered_posters.map(&:name)).to_not include("Head")
+      expect(filtered_posters.map(&:name)).to_not include("Legs")
     end
   end
 end

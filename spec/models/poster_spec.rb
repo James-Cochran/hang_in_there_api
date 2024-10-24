@@ -38,8 +38,7 @@ describe "Posters" do
 
   describe 'sorting of posters' do
     it 'sorts the posters from first to last using the value of created at' do
-     
-      sorted_posters = Poster.sort(sort:("asc"))
+     sorted_posters = Poster.sort(sort:("asc"))
 
       expect(sorted_posters.first[:name]).to eq("Head")
       expect(sorted_posters.last[:name]).to eq("Legs")
@@ -50,6 +49,16 @@ describe "Posters" do
       
       expect(sorted_posters.first[:name]).to eq("Legs")
       expect(sorted_posters.last[:name]).to eq("Head")
+    end
+  end
+
+  describe 'filtering posters' do
+    it 'can filter posters using case-insensitive search query' do
+      filtered_posters = Poster.filter(name:("t"))
+
+      expect(filtered_posters[:name]).to eq("Torso")
+      expect(filtered_posters[:name]).to_not eq("Head")
+      expect(filtered_posters[:name]).to_not eq("Legs")
     end
   end
 end

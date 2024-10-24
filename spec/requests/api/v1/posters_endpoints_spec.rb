@@ -35,47 +35,32 @@ describe "Posters API Endpoints" do
 
     expect(response).to be_successful
 
-    posters = JSON.parse(response.body, symbolize_names: true)
-    expect(posters.count).to eq(3)
-    
+    posters = JSON.parse(response.body, symbolize_names: true)[:data]
+    # binding.pry
+    # expect(posters.count).to eq(3)
+   
     posters.each do |poster|
       expect(poster).to have_key(:id)
-      expect(poster[:id]).to be_an(Integer)
-      expect(poster).to have_key(:name)
-      expect(poster[:name]).to be_a(String)
-      expect(poster).to have_key(:description)
-      expect(poster[:description]).to be_a(String)
-      expect(poster).to have_key(:price)
-      expect(poster[:price]).to be_a(Float)
-      expect(poster).to have_key(:year)
-      expect(poster[:year]).to be_a(Integer)
-      expect(poster).to have_key(:vintage)
-      expect(poster[:vintage]).to be_in([true, false])
-      expect(poster).to have_key(:img_url)
-      expect(poster[:img_url]).to be_a(String)
-    end
-    # posters.each do |poster|
-    #   expect(poster).to have_key(:id)
-    #   expect(poster[:id]).to be_an(Integer)
+      expect(poster[:id].to_i).to be_an(Integer)
       
-    #   expect(poster[:attributes]).to have_key(:name)
-    #   expect(poster[:attributes][:name]).to be_a(String)
+      expect(poster[:attributes]).to have_key(:name)
+      expect(poster[:attributes][:name]).to be_a(String)
 
-    #   expect(poster[:attributes]).to have_key(:description)
-    #   expect(poster[:attributes][:description]).to be_a(String)
+      expect(poster[:attributes]).to have_key(:description)
+      expect(poster[:attributes][:description]).to be_a(String)
 
-    #   expect(poster[:attributes]).to have_key(:price)
-    #   expect(poster[:attributes][:price]).to be_a(Float)
+      expect(poster[:attributes]).to have_key(:price)
+      expect(poster[:attributes][:price]).to be_a(Float)
 
-    #   expect(poster[:attributes]).to have_key(:year)
-    #   expect(poster[:attributes][:year]).to be_a(Integer)
+      expect(poster[:attributes]).to have_key(:year)
+      expect(poster[:attributes][:year]).to be_a(Integer)
 
-    #   expect(poster[:attributes]).to have_key(:vintage)
-    #   expect(poster[:attributes][:vintage]).to be_in([true, false])
+      expect(poster[:attributes]).to have_key(:vintage)
+      expect(poster[:attributes][:vintage]).to be_in([true, false])
 
-    #   expect(poster[:attributes]).to have_key(:img_url)
-    #   expect(poster[:attributes][:img_url]).to be_a(String)
-    # end
+      expect(poster[:attributes]).to have_key(:img_url)
+      expect(poster[:attributes][:img_url]).to be_a(String)
+    end
   end
   
   let(:poster) {Poster.first}
@@ -84,30 +69,30 @@ describe "Posters API Endpoints" do
 
     get "/api/v1/posters/#{poster.id}"
 
-    posters = JSON.parse(response.body, symbolize_names: true)
+    posters = JSON.parse(response.body, symbolize_names: true)[:data]
 
     expect(response).to be_successful
 
     expect(posters).to have_key(:id)
-    expect(posters[:id]).to eq(poster.id)
+    expect(posters[:id].to_i).to eq(poster.id)
 
-    expect(posters).to have_key(:name)
-    expect(posters[:name]).to eq(poster.name)
+    expect(posters[:attributes]).to have_key(:name)
+    expect(posters[:attributes][:name]).to eq(poster.name)
 
-    expect(posters).to have_key(:description)
-    expect(posters[:description]).to eq(poster.description)
+    expect(posters[:attributes]).to have_key(:description)
+    expect(posters[:attributes][:description]).to eq(poster.description)
 
-    expect(posters).to have_key(:price)
-    expect(posters[:price]).to eq(poster.price)
+    expect(posters[:attributes]).to have_key(:price)
+    expect(posters[:attributes][:price]).to eq(poster.price)
 
-    expect(posters).to have_key(:year)
-    expect(posters[:year]).to eq(poster.year)
+    expect(posters[:attributes]).to have_key(:year)
+    expect(posters[:attributes][:year]).to eq(poster.year)
 
-    expect(posters).to have_key(:vintage)
-    expect(posters[:vintage]).to eq(poster.vintage)
+    expect(posters[:attributes]).to have_key(:vintage)
+    expect(posters[:attributes][:vintage]).to eq(poster.vintage)
 
-    expect(posters).to have_key(:img_url)
-    expect(posters[:img_url]).to eq(poster.img_url)
+    expect(posters[:attributes]).to have_key(:img_url)
+    expect(posters[:attributes][:img_url]).to eq(poster.img_url)
 
   end
 

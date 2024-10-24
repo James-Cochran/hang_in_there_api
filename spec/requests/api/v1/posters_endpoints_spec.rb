@@ -150,4 +150,15 @@ describe "Posters API Endpoints" do
     expect(updated_poster.name).to_not eq(previous_name)
     expect(updated_poster.name).to eq("More than just a face")
   end
+
+  it "can destroy an existing poster" do
+    poster = Poster.first
+    expect(Poster.count).to eq(3)
+
+    delete "/api/v1/posters/#{poster.id}"
+    expect(response).to be_successful
+
+    expect(Poster.count).to eq(2)
+    expect{ Poster.find(poster.id) }.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end

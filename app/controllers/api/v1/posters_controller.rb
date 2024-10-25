@@ -1,8 +1,6 @@
 class Api::V1::PostersController < ApplicationController
   def index
-    posters = Poster.all # posters = Poster.sorted_and_filtered(params)
-    posters = Poster.sort(params)
-    posters = Poster.filter(params)
+    posters = Poster.sorted_and_filtered(params)
     options = {}
     options[:meta] = { count: posters.count }  
     render json: PosterSerializer.new(posters, options)

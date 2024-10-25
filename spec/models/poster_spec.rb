@@ -38,14 +38,16 @@ describe "Posters" do
 
   describe 'sorting of posters' do
     it 'sorts the posters from first to last using the value of created at' do
-     sorted_posters = Poster.sort(sort:("asc"))
+      posters = Poster.all
+      sorted_posters = Poster.sort(posters, sort:("asc"))
 
       expect(sorted_posters.first[:name]).to eq("Head")
       expect(sorted_posters.last[:name]).to eq("Legs")
     end
 
     it 'sorts the posters from last to first using the value of created at' do
-      sorted_posters = Poster.sort(sort:("desc"))
+      posters = Poster.all
+      sorted_posters = Poster.sort(posters, sort:("desc"))
       
       expect(sorted_posters.first[:name]).to eq("Legs")
       expect(sorted_posters.last[:name]).to eq("Head")
@@ -54,7 +56,8 @@ describe "Posters" do
 
   describe 'filtering posters' do
     it 'can filter posters using case-insensitive search query' do
-      filtered_posters = Poster.filter(name: "t")
+      posters = Poster.all
+      filtered_posters = Poster.filter(posters, name: "t")
       
       expect(filtered_posters.map(&:name)).to include("Torso")
       expect(filtered_posters.map(&:name)).to_not include("Head")
@@ -62,7 +65,8 @@ describe "Posters" do
     end
 
     it 'can filter posters by minimum price search query' do
-      filtered_posters = Poster.filter(min_price: 73.00)
+      posters = Poster.all
+      filtered_posters = Poster.filter(posters, min_price: 73.00)
 
       expect(filtered_posters.count).to eq(2)
 
@@ -72,7 +76,8 @@ describe "Posters" do
     end
 
     it 'can filter posters by maximum price search query' do
-      filtered_posters = Poster.filter(max_price: 73.00)
+      posters = Poster.all
+      filtered_posters = Poster.filter(posters, max_price: 73.00)
 
       expect(filtered_posters.count).to eq(1)
 

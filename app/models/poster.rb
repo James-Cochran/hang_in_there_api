@@ -6,23 +6,22 @@ class Poster < ApplicationRecord
 
   def self.sorted_and_filtered(params)
     posters = Poster.all
-    posters = Poster.filter(params)
-    posters = Poster.sort(params)
+    posters = Poster.filter(posters, params)
+    posters = Poster.sort(posters, params)
     posters
   end
 
-  def self.sort(params)
+  def self.sort(posters, params)
     if params[:sort] == "asc"
-      Poster.order(created_at: :asc)
+      posters.order(created_at: :asc)
     elsif params[:sort] == "desc"
-      Poster.order(created_at: :desc)
+      posters.order(created_at: :desc)
     else
-      Poster.all
+      posters
     end
   end
 
-  def self.filter(params)
-    posters = Poster.all
+  def self.filter(posters, params)
     posters = posters.where('name ILIKE ?', "%#{params[:name]}%").order(name: :asc) if params[:name].present?
     posters = posters.where('price >= ?', params[:min_price]) if params[:min_price].present?
     posters = posters.where('price <= ?', params[:max_price]) if params[:max_price].present?

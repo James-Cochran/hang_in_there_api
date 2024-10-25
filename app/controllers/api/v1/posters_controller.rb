@@ -1,6 +1,6 @@
 class Api::V1::PostersController < ApplicationController
   def index
-    # posters = Poster.sorted_and_filtered(params)
+    posters = Poster.all # posters = Poster.sorted_and_filtered(params)
     posters = Poster.sort(params)
     posters = Poster.filter(params)
     options = {}

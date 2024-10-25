@@ -4,10 +4,11 @@ class Poster < ApplicationRecord
     Poster.count
   end
 
-  def sorted_and_filtered
+  def self.sorted_and_filtered(params)
     posters = Poster.all
-    posters = Poster.sort(params)
     posters = Poster.filter(params)
+    posters = Poster.sort(params)
+    posters
   end
 
   def self.sort(params)

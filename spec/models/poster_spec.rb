@@ -54,11 +54,31 @@ describe "Posters" do
 
   describe 'filtering posters' do
     it 'can filter posters using case-insensitive search query' do
-      filtered_posters = Poster.filter(name:("t"))
-      # binding.pry
+      filtered_posters = Poster.filter(name: "t")
+      
       expect(filtered_posters.map(&:name)).to include("Torso")
       expect(filtered_posters.map(&:name)).to_not include("Head")
       expect(filtered_posters.map(&:name)).to_not include("Legs")
+    end
+
+    it 'can filter posters by minimum price search query' do
+      filtered_posters = Poster.filter(min_price: 73.00)
+
+      expect(filtered_posters.count).to eq(2)
+
+      expect(filtered_posters.map(&:name)).to include("Head")
+      expect(filtered_posters.map(&:name)).to include("Torso")
+      expect(filtered_posters.map(&:name)).to_not include("Legs")
+    end
+
+    it 'can filter posters by maximum price search query' do
+      filtered_posters = Poster.filter(max_price: 73.00)
+
+      expect(filtered_posters.count).to eq(1)
+
+      expect(filtered_posters.map(&:name)).to include("Legs")
+      expect(filtered_posters.map(&:name)).to_not include("Head")
+      expect(filtered_posters.map(&:name)).to_not include("Torso")
     end
   end
 end
